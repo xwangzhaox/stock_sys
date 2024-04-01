@@ -1,0 +1,28 @@
+[Unit]
+Description=sidekiq
+After=syslog.target network.target
+
+[Service]
+Type=notify
+WatchdogSec=10
+User=wwwroot
+
+WorkingDirectory=/home/wwwroot/www/shiyingbi/current
+
+ExecStart=/home/wwwroot/.rvm/bin/rvm 3.0.0 in /home/wwwroot/www/shiyingbi/current do bundle exec sidekiq -e production 2>&1 > /home/wwwroot/www/shiyingbi/shared/log/sidekiq.log
+ExecReload=/bin/kill -TSTP $MAINPID
+
+Environment=MALLOC_ARENA_MAX=2
+
+RestartSec=1
+Restart=on-failure
+
+# StandardOutput=syslog
+# StandardError=syslog
+StandardOutput=file:/home/wwwroot/www/shiyingbi/shared/log/sidekiq.log
+StandardError=file:/home/wwwroot/www/shiyingbi/shared/log/sidekiq_error.log
+
+SyslogIdentifier=sidekiq
+
+[Install]
+WantedBy=default.target

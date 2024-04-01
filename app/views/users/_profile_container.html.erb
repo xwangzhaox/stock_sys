@@ -1,0 +1,64 @@
+<div class="header">
+
+  <!-- Image -->
+  <img src="/profile-bg.jpg" class="header-img-top" alt="...">
+
+  <div class="container-fluid">
+
+    <!-- Body -->
+    <div class="header-body mt-n5 mt-md-n6">
+      <div class="row align-items-end">
+        <div class="col-auto">
+
+          <!-- Avatar -->
+          <div class="avatar avatar-xxl header-avatar-top">
+            <% if User.current_user.avatar.present? %>
+              <%= image_tag User.current_user.avatar.variant(resize: '200x200'), :class=>'avatar-img rounded-circle border border-4 border-body' %>
+            <% else %>
+              <img class="avatar-img rounded-circle" src="/img/avatars/profiles/avatar-1.jpg" alt="...">
+            <% end %>
+          </div>
+
+        </div>
+        <div class="col mb-3 ms-n3 ms-md-n2">
+
+          <!-- Pretitle -->
+          <h6 class="header-pretitle">
+            <%= @user.has_role?(:admin) ? 'Admin' : 'Members' %>
+          </h6>
+
+          <!-- Title -->
+          <h1 class="header-title">
+            <%= @user.username || '暂未填写个人信息' %>
+          </h1>
+
+        </div>
+        <div class="col-12 col-md-auto mt-2 mt-md-0 mb-md-3">
+
+          <!-- Button -->
+           <%= link_to 'Edit Profile', edit_user_path(@user), :class=>'btn btn-primary d-block d-md-inline-block lift' %>
+
+        </div>
+      </div> <!-- / .row -->
+      <div class="row align-items-center">
+        <div class="col">
+
+          <!-- Nav -->
+          <ul class="nav nav-tabs nav-overflow header-tabs">
+            <li class="nav-item">
+              <%= link_to 'Personal Profile', user_path(@user), :class=>params[:action]=="show" ? "nav-link active" : "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'History', history_by_batches_path(), :class=>params[:controller]=="history_by_batches" ? "nav-link active" : "nav-link " %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'My Downloads', my_downloads_user_path(@user), :class=>params[:action]=="my_downloads" ? "nav-link active" : "nav-link " %>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div> <!-- / .header-body -->
+    <div style="margin-top: 2em;"><%= yield %></div>
+  </div>
+</div>

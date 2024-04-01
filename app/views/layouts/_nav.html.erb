@@ -1,0 +1,153 @@
+    <!-- NAVIGATION
+    ================================================== -->
+
+
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light" id="sidebar">
+      <div class="container-fluid">
+
+        <!-- Toggler (Pop up nav for small led) -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Home brand logo -->
+        <%= link_to root_path(), :class=>"navbar-brand" do |l|%>
+          <img src="/logo.png" class="navbar-brand-imgmx-auto" style="max-height: 9rem;" alt="...">
+        <% end %>
+
+        <!-- User (xs) profile nav after touch user avatar under nav. -->
+        <div class="navbar-user d-md-none">
+          <!-- Dropdown -->
+          <div class="dropdown">
+            <!-- Toggle -->
+            <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="avatar avatar-sm avatar-online">
+                <img src="/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+              </div>
+            </a>
+            <!-- Menu -->
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
+              <a href="#" class="dropdown-item">Profile</a>
+              <a href="#" class="dropdown-item">Settings</a>
+              <hr class="dropdown-divider">
+              <a href="#" class="dropdown-item">Logout</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidebarCollapse">
+
+          <!-- Search Form. Usullay it not display for web point. -->
+          <form class="mt-4 mb-3 d-md-none">
+            <div class="input-group input-group-rounded input-group-merge">
+              <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <span class="fe fe-search"></span>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <% unless (User.current_user.roles.map(&:name).size==1 and User.current_user.roles.first.name=="warehouse") %>
+          <!-- Heading -->
+          <h6 class="navbar-heading">
+            我的
+          </h6>
+
+          <!-- Navigation -->
+          <ul class="navbar-nav mb-md-4">
+            <li class="nav-item">
+              <%= link_to user_path(User.current_user), :class=>"nav-link" do |l| %>
+                <i class="fe fe-file-text"></i>个人资料
+              <% end %>
+            </li>
+          </ul>
+          <% end %>
+
+          <!-- ---Admin Showing Begin--- -->
+          <% if User.current_user.has_role?(:admin) %>
+          <!-- Divider -->
+          <hr class="navbar-divider my-3">
+
+          <!-- Heading -->
+          <h6 class="navbar-heading">
+            管理员
+          </h6>
+
+          <!-- Navigation -->
+          <ul class="navbar-nav mb-md-4">
+            <li class="nav-item">
+              <%= link_to '/sidekiq', target: "_blank", :class=>"nav-link" do |l|%>
+                <i class="fe fe-activity"></i>异步任务看板
+              <% end %>
+            </li>
+            <li class="nav-item d-md-none">
+              <a class="nav-link" href="#sidebarModalActivity" data-toggle="modal">
+                <span class="fe fe-bell"></span> Notifications
+              </a>
+            </li>
+
+          </ul>
+          <% end %>
+          <!-- ---Admin Showing End--- -->
+
+
+          <!-- Push content down -->
+          <div class="mt-auto"></div>
+
+
+          <!-- Customize -->
+          <div id="popoverDemo" data-toggle="popover" data-trigger="manual" title="" data-content="Switch the demo to Dark Mode or adjust the navigation layout, icons, and colors!" data-original-title="Make Dashkit Your Own!" aria-describedby="popover546890">
+            <%= link_to destroy_user_session_path, :class=>"btn btn-block btn-primary mb-4", method: :delete do %>
+              <i class="fe fe-log-out mr-2"></i> 退出登录
+            <% end %>
+          </div>
+
+
+
+          <!-- User (md) -->
+          <div class="navbar-user d-none d-md-flex" id="sidebarUser">
+
+            <!-- Icon -->
+            <a href="#sidebarModalActivity" class="navbar-user-link" data-toggle="modal">
+              <span class="icon">
+                <i class="fe fe-chevron-left me-4"></i>
+              </span>
+            </a>
+
+            <!-- Dropup -->
+            <div class="dropup">
+
+              <!-- Toggle -->
+              <a href="#" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="avatar avatar-sm avatar-online">
+                  <%= image_tag User.current_user.avatar_attachment_path, :class=>'avatar-img rounded-circle border border-4 border-body' %>
+                </div>
+              </a>
+
+              <!-- Menu -->
+              <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
+                <!-- <a href="./profile-posts.html" class="dropdown-item">Profile</a>
+                <a href="./account-general.html" class="dropdown-item">Settings</a>
+                <hr class="dropdown-divider"> -->
+                <%= link_to "Logout", destroy_user_session_path, :class=>"dropdown-item", method: :delete %>
+              </div>
+
+            </div>
+
+            <!-- Icon -->
+            <a href="#sidebarModalSearch" class="navbar-user-link" data-toggle="modal">
+              <span class="icon">
+                <i class="fe fe-chevron-right me-4"></i>
+              </span>
+            </a>
+
+          </div>
+
+
+        </div> <!-- / .navbar-collapse -->
+
+      </div>
+    </nav>

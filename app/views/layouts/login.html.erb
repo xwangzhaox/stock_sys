@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <!-- start: Meta -->
+  <meta charset="utf-8">
+  <title>Ecommerce</title>
+  <meta name="author" content="Kevin Wang">
+  <!-- end: Meta -->
+  
+  <!-- start: Mobile Specific -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- end: Mobile Specific -->
+  <%#= javascript_include_tag 'login', 'data-turbolinks-track': 'reload' %>
+  <!-- start: CSS -->
+    <%#= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- end: CSS -->
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+  <!-- start: Favicon -->
+  <!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+  <%#= favicon_link_tag 'favicon.ico' %>
+  <!-- end: Favicon -->
+</head>
+<body class="d-flex align-items-center bg-auth border-top border-top-2 border-primary" style="display: block;">
+    <!-- CONTENT
+    ================================================== -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <%= yield %>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+  </body>
+</html>

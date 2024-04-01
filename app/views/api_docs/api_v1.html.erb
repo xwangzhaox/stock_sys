@@ -1,0 +1,21 @@
+<div id="header">
+  <div class="swagger-ui-wrap">
+  	<%= link_to t('common.brand'), api_docs_path, id: 'logo'%>
+  	<form id="api_selector">
+  	  <div class="input hide">
+  	  	<input id="input_baseUrl" name="baseUrl" type="text"></input>
+  	  </div>
+  	  <div class="input">
+  	  	<input id="input_userToken" placeholder="user_token" name="userToken" type="text"></input>
+  	  </div>
+  	  <% if Rails.env.development? %>
+  	    <div class="input">
+  	    	<a id="explore" href="#" data-sw-translate>Reload</a>
+  	    </div>
+  	  <% end %>
+  	</form>
+  </div>
+</div>
+    
+<div id="message-bar" class="swagger-ui-wrap"></div>
+<div id="api-v1" class="swagger-ui-container swagger-ui-wrap"></div>

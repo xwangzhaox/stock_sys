@@ -1,0 +1,53 @@
+<div class="tab-pane fade show active" id="pills-department" role="tabpanel" aria-labelledby="pills-department-tab">
+  <table class="table table-sm table-nowrap">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">邮箱</th>
+        <th scope="col">电话</th>
+        <th scope="col">用户名</th>
+        <th scope="col">登陆次数</th>
+        <th scope="col">权限（展示的菜单）</th>
+        <th scope="col">可进行动作（可操作的订单状态）</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <th scope="row"><%= user.id %></th>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td>
+          <div class="avatar avatar-sm">
+            <%= image_tag user.avatar_attachment_path, :class=>'avatar-img rounded-circle' %>
+          </div>
+          <%= user.username %>    
+        </td>
+        <td><%= user.sign_in_count %></td>
+        <td>
+          <% user.department_roles.map(&:translation_name)[0..2].each do |state| %>
+            <span class="badge bg-primary-soft"><%= state %></span>
+          <% end %>
+          <%= "..." if user.department_roles.map(&:translation_name).size>3 %>
+        </td>
+        <td>
+          <% has_role_state_names(user)[0..2].each do |name| %>
+            <span class="badge bg-primary-soft"><%= name %></span>
+          <% end %>
+          <%= "..." if has_role_state_names(user).size>3 %>
+        </td>
+        <td class="text-right">
+          <%= link_to '编辑', edit_user_path(user), :class=>"btn btn-sm btn-white" %>
+          <%= link_to '删除', user, method: :delete, :class=>"btn btn-sm btn-white", :style=>"color:white;background-color:red;", data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+

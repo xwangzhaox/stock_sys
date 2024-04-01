@@ -1,0 +1,286 @@
+.hide {display: none;}
+
+.choices {
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-menu>ul.choices__list {
+  padding: 0px;
+  margin: 0px;
+  font-size: .8125rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  list-style-type: none;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: transparent;
+    color: #12263f;
+}
+
+.dropdown-menu-card {
+  transform: translate(-266px, 32px) !important;
+}
+
+.btn-check {
+  clip: rect(0,0,0,0);
+  pointer-events: none;
+  position: absolute;
+}
+
+.margin-t-20 {margin-top: 20px;}
+
+.btn-group-toggle .btn-check:checked+.btn-white, .btn-group-toggle .btn-white:not(:disabled):not(.disabled).active, .btn-group-toggle .btn-white:not(:disabled):not(.disabled):active {
+  background-color: #fff;
+  border-color: #2c7be5;
+  box-shadow: none;
+  color: #2c7be5;
+}
+
+.btn-close {
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  color: #000;
+  border: 0;
+  border-radius: .25rem;
+  opacity: .5;
+  background: transparent url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2312263F'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") 50%/.5em auto no-repeat;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E");
+  padding: calc(.75rem + .5em) 1.25rem;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+
+/* 合并动作按钮 Begin */
+.flipswitch {
+  position: relative;
+  top: 10%;
+  width: 40px;
+  height: 20px;
+  -webkit-appearance: initial;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.flipswitch:after {
+  position: absolute;
+  top: 5%;
+  height: 90%;
+  transition: all 0.3s ease-in 0s;
+}
+
+.flipswitch:after {
+  left: 2%;
+  content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%2395aac9'/%3E%3C/svg%3E");
+  width: 15px;
+  border-color: #95aac9;
+  border-radius: 15px;
+}
+
+.flipswitch:checked:after {
+  left: 53%;
+  border-color: #fff;
+  content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.advance-download-container {
+  height: 0px;
+  opacity: 0;
+}
+
+.download-remark-input {
+  background-color: #12263f;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+}
+/* 合并动作按钮 End */
+
+/* Preview Begin */
+.preview-image{width: 100%;}
+.td-white{background-color: white;}
+.td-blue{background-color: blue;}
+.td-gray{background-color: gray;}
+.td-black{background-color: black;}
+.tab-content{padding-bottom: 300px;}
+/* Preview End */
+
+/* customizes过宽折行 Begin */
+.word{
+  width:290px;
+  font-family:"microsoft yahei";
+  white-space: initial;
+}
+.ellipsis{
+  text-overflow:ellipsis;
+  /*overflow:hidden;*/
+}
+/* customizes过宽折行 End */
+
+/* New Comment Modal Begin */
+.modal {
+  display: none; /* Hidden by default */
+  z-index: 10000; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  margin: auto;
+  padding: 0;
+  width: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+/* New Comment Modal End */
+
+/* 订单列表中的备注列表 Begin */
+.comment-container {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 2px;
+  display: block;
+  white-space: nowrap;
+}
+.remove_comment_btn {
+  padding: 0px 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+  background-color: lightgray;
+  color: white;
+}
+/* 订单列表中的备注列表 End */
+
+/*模板下拉菜单菜单项样式*/
+#template>option {
+  background-color: #12263f;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+/*  高级搜索 Begin  */
+.advance-search-container .more-label {position: relative;}
+
+.current-params {position: relative;}
+.state-container, .site-container {position: absolute;top: -55px;}
+.state-container{left: 0;}
+.site-container{right: 0;}
+
+.search-bar-switch{
+  color: lightgray;
+  position: absolute;
+  top: -20px;
+  margin: auto;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+@keyframes searchbar {
+  from {top: -30px;}
+  to {top: -20px;}
+}
+
+.search-bar h4{
+  font-size: 16px;
+  color: lightgray;
+  font-weight: normal;
+}
+
+.search-bar dt, .search-bar dd{
+  display: inline-block;
+}
+
+.search-bar dd{
+  padding: 2px 4px;
+  margin-right: 3px;
+  color: #2c7be5;
+  /*text-decoration: underline;*/
+}
+
+.search-bar dd label{
+  margin: 0px;
+  color: #6e84a3;
+  padding: 3px 10px;
+}
+
+.search-bar input[type='checkbox']:checked + label, .search-bar input[type='radio']:checked + label {
+  background-color: #efefef;
+  border-radius: 15px;
+  color: #00d97e;
+}
+
+.search-bar input[type='checkbox']:disabled+ label {
+  color: lightgray;
+}
+
+.search-bar input[type='submit'] {
+  width: 100%;
+  margin: 5px 0px 30px 0px;
+}
+/*  高级搜索 End  */
+
+/*  @ block Begin  */ 
+.type-at-container {
+  height: 0px;
+  display: block;
+  padding: 0;
+  border-top: 0px;
+  opacity: 0;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.type-at-container .avatar-sm-x {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+}
+.user-block {
+  background-color: lightgray;
+  padding: 5px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.user-block:hover {
+  color: white;
+  background-color: gray;
+  cursor:pointer;
+}
+/*  @ block End  */ 
+
+
+/*  List Begin  */ 
+.item-title {
+  word-break: break-all;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*  List End  */ 

@@ -1,0 +1,1 @@
+$redis = Redis.new({ url: ENV['REDIS_URL']||Rails.configuration.database_configuration[Rails.env]['redis_url'] })

@@ -1,0 +1,33 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Qiniu
+  host: 'img-hb.pickcent.com'
+  access_key: 'PqUSpmfJqDi_9MsCM-uCQOc6ZY6oQb8sshXxgxQf'
+  secret_key: 'qJI5LjeWCeFm7CGoVNn1M8P4kgTA1FBF5btZOC-7'
+  bucket: 'pickcent-hb'
+  domain: 'img-hb.pickcent.com'
+  protocol: 'http'
+  multi_region: false
+  bucket_private: false
+  up_host: 'up-z1.qiniup.com'
+  #up_host: 'up-z2.qiniup.com'
+  # up_host: 'upload-as0.qiniup.com'
+  # service: Disk
+  # root: <%= Rails.root.join("storage") %>
+
+qiniu:
+  service: Qiniu
+  host: 'img-hb.pickcent.com'
+  access_key: 'PqUSpmfJqDi_9MsCM-uCQOc6ZY6oQb8sshXxgxQf'
+  secret_key: 'qJI5LjeWCeFm7CGoVNn1M8P4kgTA1FBF5btZOC-7'
+  bucket: 'pickcent-hb'
+  domain: 'img-hb.pickcent.com'
+  protocol: 'http'
+  multi_region: false
+  bucket_private: false
+  up_host: 'up-z1.qiniup.com'
+  # up_host: 'up-z2.qiniup.com'
+  # up_host: 'upload-as0.qiniup.com'

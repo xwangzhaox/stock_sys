@@ -1,0 +1,43 @@
+      <!-- HEADER -->
+      <div class="header">
+        <div class="container-fluid">
+
+          <!-- Body -->
+          <div class="header-body">
+            <div class="row align-items-end">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Overview
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  <%#= link_to "Back", :back %>
+                  <% if params["controller"]=="orders" && ['state_history_by_me'].include?(params["state"]) %>
+                    <%= State.where(en_name: params["state"]).first.name %>
+                  <% else %>
+                    <%= params["controller"].capitalize %>
+                  <% end %>
+                </h1>
+
+              </div>
+              <div class="col-auto">
+                <% design_department = Role.where(name: 'design').first %>
+                <% design_states = design_department.states.map(&:en_name) %>
+                <% if design_states.include?(Array(params[:states]).first) %>
+                  <%= link_to "上传设计图", upload_design_images_page_orders_path, class:"btn btn-primary lift"%>
+                <% elsif "design_image_uploaded" == Array(params[:states]).first %>
+                  <a href="javascript:;" class="btn btn-primary lift verify-design-image">审图</a>
+                <% end %>
+                <% if params[:controller]=="keywords" and params[:action]=="index" %>
+                  <%= link_to "上传新关键词", upload_keywords_page_keywords_path, class:"btn btn-primary lift"%>
+                  <%= link_to "下载关键词及文案", export_record_keywords_path(site_id: params[:site_id]), class:"btn btn-primary lift", target: "_blank" %>
+                <% end %>
+              </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .header-body -->
+
+        </div>
+      </div> <!-- / .header -->

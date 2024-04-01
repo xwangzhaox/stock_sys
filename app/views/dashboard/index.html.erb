@@ -1,0 +1,53 @@
+<div class="main-content bg-fixed-bottom" style="background-image: url(/sticky.svg);background-size: calc(100% - 250px);">
+  <div class="row justify-content-center">
+  	<div class="col-12 col-lg-10 col-xl-8">
+  		<div class="header mt-md-5">
+	    <div class="header-body">
+
+	      <!-- Pretitle -->
+	      <h6 class="header-pretitle">
+	        Our Platform
+	      </h6>
+
+	      <!-- Title -->
+	      <h1 class="header-title">
+	        Platform Feed
+	      </h1>
+
+	    </div>
+	  </div>
+	  <% unless flash[:alert].nil? %>
+	  <div class="alert alert-info alert fade show" role="alert">
+		<%= flash[:alert] %>
+	  </div>
+	  <% end %>
+	  <div class="card">
+	    <div class="card-body text-center">
+	      <div class="row justify-content-center">
+	        <div class="col-12 col-md-10 col-xl-8">
+
+	          <!-- Image -->
+	          <img src="/happiness.svg" alt="..." class="img-fluid mt-n5 mb-4" style="max-width: 272px;">
+
+	          <!-- Title -->
+	          <h2>
+	            We released 2021 new versions of our system to make the company a better place.
+	          </h2>
+
+	          <!-- Content -->
+	          <p class="text-muted">
+	            This is a true story and totally not made up. This is going to be better in the long run but for now this is the way it is.
+	          </p>
+
+	          <!-- Button -->
+	          <a href="#!" class="btn btn-primary lift" onclick="alert('新用户请联系管理员分配权限，老用户们加油创造奇迹吧！');">
+	            Try it for now
+	          </a>
+
+	        </div>
+	      </div> <!-- / .row -->
+	    </div>
+	  </div>
+  	</div>
+  </div>
+</div>

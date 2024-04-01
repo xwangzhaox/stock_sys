@@ -1,0 +1,35 @@
+version: "2"
+services:
+  redis:
+    image: "redis:4.0-alpine"
+    command: redis-server --requirepass "j2BhMzgHdHD5"
+    volumes:
+       - "redis:/data"
+  website:
+   image: "wangzhaokevin/ecommerce_website:latest"
+   depends_on:
+      - "redis"
+   build: .
+   ports:
+      - "3000:3000"
+   command: "sh ./config/docker/startup.sh"
+   environment:
+     RAILS_ENV: test
+   volumes:
+      #  - ".:/var/jenkins_home"
+      - ".:/app"
+
+  sidekiq:
+   image: "wangzhaokevin/ecommerce_sidekiq:latest"
+   depends_on:
+      - "redis"
+   build: .
+   command: "bundle exec sidekiq"
+   volumes:
+      #  - ".:/var/jenkins_home"
+      - ".:/app"
+   environment:
+     RAILS_ENV: test
+     
+volumes:
+  redis:

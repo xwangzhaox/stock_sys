@@ -1,0 +1,15 @@
+[Unit]
+Description=Puma HTTP Server for mysite (production)
+After=network.target
+
+[Service]
+Type=simple
+User=wwwroot
+ExecStart=/bin/bash -lc 'cd /home/wwwroot/www/shiyingbi/current;/home/wwwroot/.rvm/bin/rvm 3.0.0 do bundle exec puma -e production -C /home/wwwroot/www/shiyingbi/shared/config/puma.rb -b unix:///home/wwwroot/www/shiyingbi/shared/tmp/sockets/puma.sock'
+ExecStop=/home/wwwroot/.rvm/bin/rvm 3.0.0 do bundle exec pumactl -S /home/wwwroot/www/shiyingbi/shared/tmp/pids/puma.pid stop
+
+PIDFile=/home/wwwroot/www/shiyingbi/shared/tmp/pids/puma.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

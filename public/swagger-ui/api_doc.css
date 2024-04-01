@@ -1,0 +1,26 @@
+#api-doc-container {
+  margin: 20px;
+  font-family: 'Droid Sans', sans-serif;
+}
+
+#api-doc-container ul > li {
+  margin-bottom: 10px;
+}
+
+.swagger-section #api_selector .input.hide {
+  display: none;
+}
+
+.swagger-section #input_userToken {
+  width: 650px;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+  height: 24px;
+}
+
+.swagger-ui-container {
+  padding-top: 52px;
+}

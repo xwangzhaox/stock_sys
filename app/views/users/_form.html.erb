@@ -1,0 +1,167 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row justify-content-between align-items-center">
+    <div class="col">
+      <div class="row align-items-center">
+        <div class="col-auto">
+
+          <!-- Avatar -->
+          <div class="avatar">
+            <%= image_tag User.current_user.avatar_attachment_path, :class=>'avatar-img rounded-circle' %>
+          </div>
+
+        </div>
+        <div class="col ms-n2">
+
+          <!-- Heading -->
+          <h4 class="mb-1">
+            Your avatar
+          </h4>
+
+          <!-- Text -->
+          <small class="text-muted">
+            PNG or JPG no bigger than 1000px wide and tall.
+          </small>
+
+        </div>
+      </div> <!-- / .row -->
+    </div>
+    <div class="col-auto">
+      <%= form.file_field :avatar %>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <div class="row">
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <%= form.label :phone, '电话' %>
+        <%= form.text_field :phone, :class=>'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <%= form.label :username, '姓名' %>
+        <%= form.text_field :username, :class=>'form-control' %>
+      </div>
+    </div>
+
+  </div>
+  <% if User.current_user.has_role?(:admin) or User.current_user.has_role?(:purchase)  %>
+  <hr class="my-5">
+  <div class="row">
+    <div class="col-12 col-md-10">
+      <h2 class="card-title">Excel导出模版</h2>
+    </div>
+    <div class="col-12 col-md-2">
+      <div class="form-group">
+        <%= link_to '新建列表', new_export_excel_cells_user_path(), :class=>"btn btn-sm btn-white text-right", :style=>"" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <table class="table table-sm table-nowrap">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th scope="col">Tag</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>默认</td>
+          <td>
+          </td>
+        </tr>
+        <% @export_excel_cell_tags.each_with_index do |tag, index| %>
+        <tr>
+          <th scope="row"><%= index+2 %></th>
+          <td><%= tag %></td>
+          <td class="text-right">
+            <%= link_to '编辑', edit_reference_export_excel_cells_users_path(user_id: user.id, tag: tag), :class=>"btn btn-sm btn-white" %>
+            <%= link_to '删除', destroy_reference_export_excel_cells_users_path(tag: tag), method: :delete, :class=>"btn btn-sm btn-white", :style=>"color:white;background-color:red;", data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+  <% if User.current_user.has_role?(:admin) %>
+  <hr class="my-5">
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <label>基础权限</label>
+      <div class="form-group">
+          <%= check_box_tag "user[roles][]", 'admin', user.has_role?('admin') %>
+          管理员<br />
+          <%= check_box_tag "user[roles][]", 'purchase', user.has_role?('purchase') %>
+          采购<br />
+          <%= check_box_tag "user[roles][]", 'external', user.has_role?('external') %>
+          外部人员<br />
+          <%= check_box_tag "user[roles][]", 'seo', user.has_role?('seo') %>
+          SEO
+      </div>
+    </div>
+
+    <div class="col-12 col-md-12">
+      <label>部门权限</label>
+      <div class="form-group">
+        <% for role in Role.nav_item %>
+          <%= check_box_tag "user[roles][]", role.name, user.has_role?(role.name) %>
+          <%=h role.translation_name %><br />
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-12">
+      <label>可操作订单权限</label>
+      <div class="form-group">
+        <% for state in State.all %>
+          <%= check_box_tag "user[states][]", state.id, user.has_role?(:manage, state) %>
+          <%=h state.name %><br />
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-12">
+      <label>可操作店铺</label>
+      <div class="form-group">
+        <% for site in Site.all %>
+          <%= check_box_tag "user[sites][]", site.id, user.has_role?(:manage, site) %>
+          <%=h site.name %><br />
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-12">
+      <label>可应用小程序</label>
+      <div class="form-group">
+        <% for progress in Progress.all %>
+          <%= check_box_tag "user[progresses][]", progress.id, user.has_role?(:execute, progress) %>
+          <%=h progress.name %><br />
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <%= form.submit '提交', :class=>'btn btn-primary' %>
+<% end %>

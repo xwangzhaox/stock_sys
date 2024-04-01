@@ -1,0 +1,74 @@
+<%= render :layout => '/users/profile_container' do %>
+  <%# @statistics_by_day.each do |daily_order_count| %>
+    <%#= daily_order_count.day %>
+    <%#= daily_order_count.count %>
+  <%# end %>
+  <% unless flash[:notice].nil? %>
+  <div class="alert alert-info notice fade show" role="alert">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="col-12 col-xl-8">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="mb-3">
+            <h4>关于应用</h4>
+            <ul>
+              <li>调整订单状态</li>
+                默认未给新用户开通任何订单状态调整权限。需联系管理员进行开通。
+              <li>订单状态回滚</li>
+               调整订单状态后，如发现移动错误，可在历史动作板块进行移动动作的回滚
+              <li>打包下载</li>
+               <p>用户在订单列表页面点击打包下载之后，会自动跳转到我的下载页面等待下载包打包完成（期间用户可以进行其他操作，不需在该页面长时间等待），打包完成后，我的下载页面条目会把状态变为prepareing并且提供下载。</p>
+                <p>点击“下载”下载完成，5分钟后当前压缩包将在5分钟后在后台删除。二次下载可以在5分钟内再次点击下载，或者在5分钟后点击 “压缩包已清理，复用可点击 从新生成”</p>
+              <li>可申请权限</li>
+                <p>详见下文权限设置</p>
+            </ul>
+            <h4>新用户请进行如下基础设置:</h4>
+            <ul class="ms-4" style="list-style-type: auto;">
+              <li>个人信息设置</li>
+                请点击当前页面中的"Edit Profile"设置用户头像、名称等基础信息
+              <li>权限设置</li>
+                <p>用户权限分2部分,需要向管理员申请</p>
+                <p>
+                  一、 用户部门 <br>
+                  二、 用户常用的订单状态
+                </p>
+              <li>打包下载中Excel字段模板设置</li>
+                <p>在“Edit Profile”页面中有“Excel导出模板”设置，点击新建列表，可建立自己导出Excel中会用到的字段列表模板。下次在订单列表页下载时即可选择这里建立的模板进行下载了</p>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xl-4">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- List group -->
+          <div class="list-group list-group-flush my-n3">
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <!-- Title -->
+                  <h5 class="mb-0">
+                    当日处理订单数
+                  </h5>
+
+                </div>
+                <div class="col-auto">
+                  <%= @orders_states_size.size %>
+                </div>
+              </div> <!-- / .row -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
