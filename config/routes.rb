@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq-status/web'
 
 Rails.application.routes.draw do
+  resources :stocks
   root to: "dashboard#index"
 
   resources :api_docs, only: [:index] do

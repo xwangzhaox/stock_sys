@@ -15,7 +15,7 @@ default: &default
 development:
   <<: *default
   host: 127.0.0.1
-  database: shiyingbi
+  database: stock_sys
   username: root
   password: sruce3gvvnbs7
   port: 3306
@@ -24,10 +24,19 @@ development:
 # Production environment deploy by cap. And there settings are invalid.
 production:
   <<: *default
-  database: shiyingbi
+  database: stock_sys
   redis_url: "redis://@127.0.0.1:6379/12"
   username: erp
   password: nH8pcGtheetN
   port: 3306
   host: 8.218.141.146
   socket: /var/run/mysqld/mysqlx.sock
+
+production_clickhouse:
+  adapter: clickhouse
+  database: stock
+  host: 47.92.218.247
+  port: 9000
+  username:
+  password:
+  migrations_paths: db/clickhouse
